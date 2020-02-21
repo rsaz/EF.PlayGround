@@ -8,4 +8,8 @@
     <Description>Simple project to explore Entity Framework Core functionalities and its advantages over ADO</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+  </ItemGroup>
+
 </Project>
