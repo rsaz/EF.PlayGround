@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <Product>Entity Framework Core PlayGround</Product>
+    <Description>Simple project to explore Entity Framework Core functionalities and its advantages over ADO</Description>
+  </PropertyGroup>
+
+</Project>
