@@ -7,6 +7,8 @@ using App.ADO;
 using App.Entity;
 using App.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace App
 {
@@ -15,10 +17,18 @@ namespace App
         static void Main(string[] args)
         {
             //CreateUsingADO();
+
             CreateUsingEntity();
+            RetrieveEntity();
+
+            UpdateEntity();
+            RetrieveEntity();
+            
+            DeleteEntity();
+            RetrieveEntity();
         }
 
-        // Using ADO Model
+        //** Using ADO Model **//
         static void CreateUsingADO()
         {
             // Data Seed
@@ -32,7 +42,9 @@ namespace App
 
         }
 
-        // Using Entity
+        //** Using Entity **//
+
+        //Create
         static void CreateUsingEntity()
         {
             // Data Seed
@@ -47,6 +59,48 @@ namespace App
                 context.SaveChanges();
             }   
         }
+        //Retrieve
+        static void RetrieveEntity()
+        {
+            using (var context = new ApplicationContext())
+            {
+                var profiles = context.Profile.ToList();
+                Console.WriteLine($"Data retrieved: {profiles.Count} profile(s)");
+
+                // show in the console the result of profiles
+                foreach (var item in profiles)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+        }
+        // Update item
+        static void UpdateEntity()
+        {
+            using (var context = new ApplicationContext())
+            {
+                var profileItem = context.Profile.First();
+                profileItem.Name = "Profile Entity Updated";
+                context.Profile.Update(profileItem);
+                context.SaveChanges();
+            }
+        }
+        // Delete all items
+        static void DeleteEntity()
+        {
+            using (var context = new ApplicationContext())
+            {
+                var profiles = context.Profile.ToList();
+
+                foreach (var item in profiles)
+                {
+                    context.Profile.Remove(item);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
 
     }
 }
