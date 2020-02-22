@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App.ADO
 {
-    class ProfileADO : IDisposable
+    class ProfileADO : IDisposable, IProfile
     {
         private SqlConnection connection;
 

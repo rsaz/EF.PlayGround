@@ -53,18 +53,17 @@ namespace App
             profile.Gender = "Neutral";
             profile.Age = 2;
 
-            using (var context = new ApplicationContext())
+            using (var context = new ProfileEntity())
             {
-                context.Profile.Add(profile);
-                context.SaveChanges();
+                context.Create(profile);
             }   
         }
         //Retrieve
         static void RetrieveEntity()
         {
-            using (var context = new ApplicationContext())
+            using (var context = new ProfileEntity())
             {
-                var profiles = context.Profile.ToList();
+                var profiles = context.Retrieve();
                 Console.WriteLine($"Data retrieved: {profiles.Count} profile(s)");
 
                 // show in the console the result of profiles
@@ -77,27 +76,24 @@ namespace App
         // Update item
         static void UpdateEntity()
         {
-            using (var context = new ApplicationContext())
+            using (var context = new ProfileEntity())
             {
-                var profileItem = context.Profile.First();
+                var profileItem = context.Retrieve().First();
                 profileItem.Name = "Profile Entity Updated";
-                context.Profile.Update(profileItem);
-                context.SaveChanges();
+                context.Update(profileItem);
             }
         }
         // Delete all items
         static void DeleteEntity()
         {
-            using (var context = new ApplicationContext())
+            using (var context = new ProfileEntity())
             {
-                var profiles = context.Profile.ToList();
+                var profiles = context.Retrieve();
 
                 foreach (var item in profiles)
                 {
-                    context.Profile.Remove(item);
+                    context.Delete(item);
                 }
-
-                context.SaveChanges();
             }
         }
 
